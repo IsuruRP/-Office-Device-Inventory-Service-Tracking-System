@@ -18,9 +18,7 @@ const DeviceSchema = new mongoose.Schema({
         ram: String,
         storageType: String,
         storageCapacity: String,
-        operatingSystem: String,
-        graphicsCard: String,
-        displaySize: String
+        operatingSystem: String
     }
 }, { timestamps: true });
 
