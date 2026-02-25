@@ -6,9 +6,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
-  "author": "",
+  "author": "IsuruRP",
   "license": "ISC",
-  "description": "",
+  "description": "Office Device Inventory and Service Tracking System - Backend API",
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
