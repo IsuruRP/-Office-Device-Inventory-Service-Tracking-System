@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const Device = require("../models/Device");
 
 // Add Device
@@ -55,5 +56,6 @@ router.delete("/:id", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
 
 module.exports = router;

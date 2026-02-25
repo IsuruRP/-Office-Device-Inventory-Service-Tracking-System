@@ -20,6 +20,20 @@ app.get("/", (req, res) => {
     res.json({ message: "Office Device Inventory API is running!" });
 });
 
+// 404 Handler
+app.use((req, res, next) => {
+    res.status(404).json({ success: false, error: "Not Found" });
+});
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(err.status || 500).json({
+        success: false,
+        error: err.message || "Internal Server Error"
+    });
+});
+
 // Database Connection
 mongoose
     .connect(process.env.MONGO_URI)
