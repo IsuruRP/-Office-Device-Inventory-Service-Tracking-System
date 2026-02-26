@@ -13,6 +13,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { createDevice, getDeviceById, updateDevice } from '../services/api';
 
 const statusOptions = ['Active', 'Under Repair', 'Retired'];
+const operatingSystemOptions = ['Windows 10', 'Windows 11', 'macOS', 'Linux', 'Other'];
+const storageTypeOptions = ['HDD', 'SSD', 'NVMe'];
 
 function DeviceForm() {
     const { id } = useParams();
@@ -208,18 +210,28 @@ function DeviceForm() {
                                 fullWidth
                                 label="OS"
                                 name="hardwareConfig.operatingSystem"
-                                value={formData.hardwareConfig?.operatingSystem}
+                                select
+                                value={formData.hardwareConfig?.operatingSystem || ''}
                                 onChange={handleChange}
-                            />
+                            >
+                                {operatingSystemOptions.map(option => (
+                                    <MenuItem key={option} value={option}>{option}</MenuItem>
+                                ))}
+                            </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
                                 label="Storage Type"
                                 name="hardwareConfig.storageType"
-                                value={formData.hardwareConfig?.storageType}
+                                select
+                                value={formData.hardwareConfig?.storageType || ''}
                                 onChange={handleChange}
-                            />
+                            >
+                                {storageTypeOptions.map(option => (
+                                    <MenuItem key={option} value={option}>{option}</MenuItem>
+                                ))}
+                            </TextField>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <TextField

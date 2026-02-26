@@ -6,13 +6,17 @@ import CssBaseline from '@mui/material/CssBaseline'
 import theme from './theme'
 import { BrowserRouter } from 'react-router-dom'
 
+import { AuthProvider } from './context/AuthContext';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <BrowserRouter>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <App />
-            </ThemeProvider>
+            <AuthProvider>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <App />
+                </ThemeProvider>
+            </AuthProvider>
         </BrowserRouter>
     </React.StrictMode>,
 )

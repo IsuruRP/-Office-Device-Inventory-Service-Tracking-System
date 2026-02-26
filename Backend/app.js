@@ -13,8 +13,14 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+const authRoutes = require("./routes/authRoutes");
+app.use("/api/auth", authRoutes);
+
 const deviceRoutes = require("./routes/deviceRoutes");
 app.use("/api/devices", deviceRoutes);
+
+const analyticsRoutes = require("./routes/analyticsRoutes");
+app.use("/api/analytics", analyticsRoutes);
 
 app.get("/", (req, res) => {
     res.json({ message: "Office Device Inventory API is running!" });
