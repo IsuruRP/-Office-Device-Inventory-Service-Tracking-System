@@ -16,9 +16,15 @@ const DeviceSchema = new mongoose.Schema({
     hardwareConfig: {
         cpu: String,
         ram: String,
-        storageType: String,
+        storageType: {
+            type: String,
+            enum: ["HDD", "SSD", "NVMe"]
+        },
         storageCapacity: String,
-        operatingSystem: String
+        operatingSystem: {
+            type: String,
+            enum: ["Windows 10", "Windows 11", "macOS", "Linux", "Other"]
+        }
     }
 }, { timestamps: true });
 

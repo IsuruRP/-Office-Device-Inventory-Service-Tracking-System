@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const Device = require("../models/Device");
+const { protect, authorize } = require("../middleware/authMiddleware");
 
-// Add Device
-router.post("/", async (req, res) => {
+// Add Device (Admin only)
+router.post("/", protect, authorize('Admin'), async (req, res) => {
     try {
         const device = new Device(req.body);
         await device.save();
@@ -15,7 +16,7 @@ router.post("/", async (req, res) => {
 });
 
 // Get All Devices
-router.get("/", async (req, res) => {
+router.get("/", protect, async (req, res) => {
     try {
         const devices = await Device.find();
         res.json(devices);
@@ -25,7 +26,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get Single Device
-router.get("/:id", async (req, res) => {
+router.get("/:id", protect, async (req, res) => {
     try {
         const device = await Device.findById(req.params.id);
         if (!device) return res.status(404).json({ error: "Device not found" });
@@ -35,8 +36,8 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-// Update Device
-router.put("/:id", async (req, res) => {
+// Update Device (Admin only)
+router.put("/:id", protect, authorize('Admin'), async (req, res) => {
     try {
         const device = await Device.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
         if (!device) return res.status(404).json({ error: "Device not found" });
@@ -46,8 +47,8 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// Delete Device
-router.delete("/:id", async (req, res) => {
+// Delete Device (Admin only)
+router.delete("/:id", protect, authorize('Admin'), async (req, res) => {
     try {
         const device = await Device.findByIdAndDelete(req.params.id);
         if (!device) return res.status(404).json({ error: "Device not found" });
