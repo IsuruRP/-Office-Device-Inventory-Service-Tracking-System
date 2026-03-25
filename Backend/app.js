@@ -22,6 +22,18 @@ app.use("/api/devices", deviceRoutes);
 const analyticsRoutes = require("./routes/analyticsRoutes");
 app.use("/api/analytics", analyticsRoutes);
 
+const serviceLogRoutes = require("./routes/serviceLogRoutes");
+app.use("/api/service-logs", serviceLogRoutes);
+
+const userRoutes = require("./routes/userRoutes");
+app.use("/api/users", userRoutes);
+
+const notificationRoutes = require("./routes/notificationRoutes");
+app.use("/api/notifications", notificationRoutes);
+
+const ticketRoutes = require("./routes/ticketRoutes");
+app.use("/api/tickets", ticketRoutes);
+
 app.get("/", (req, res) => {
     res.json({ message: "Office Device Inventory API is running!" });
 });
@@ -52,4 +64,3 @@ mongoose
     .catch((err) => {
         console.error("❌ MongoDB connection failed:", err);
     });
-

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
-import { Typography, Paper, TextField, Button, Box, Link, Alert, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Typography, Paper, TextField, Button, Box, Link, Alert } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
 function Register() {
@@ -63,18 +63,6 @@ function Register() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-
-                    <FormControl fullWidth sx={{ mt: 2 }}>
-                        <InputLabel>Role</InputLabel>
-                        <Select
-                            value={role}
-                            label="Role"
-                            onChange={(e) => setRole(e.target.value)}
-                        >
-                            <MenuItem value="Admin">Admin (Full Access)</MenuItem>
-                            <MenuItem value="User">User (View Only)</MenuItem>
-                        </Select>
-                    </FormControl>
 
                     <Button
                         type="submit"

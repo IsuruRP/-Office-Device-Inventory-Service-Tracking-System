@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { useNavigate, Link as RouterLink, useLocation } from 'react-router-dom';
 import { Typography, Paper, TextField, Button, Box, Link, Alert } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 
@@ -8,14 +8,25 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
     const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
-            await login(email, password);
-            navigate('/');
+            const userData = await login(email, password);
+            const currentPath = location.pathname;
+            
+            if (currentPath.startsWith('/edit/') || currentPath.startsWith('/device/service/')) {
+                if (userData.role === 'Admin' || userData.role === 'IT Admin') {
+                    navigate(currentPath);
+                } else {
+                    navigate('/');
+                }
+            } else {
+                navigate('/');
+            }
         } catch (err) {
             setError(err);
         }

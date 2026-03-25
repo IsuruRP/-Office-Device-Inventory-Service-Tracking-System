@@ -9,6 +9,8 @@ const DeviceSchema = new mongoose.Schema({
     department: String,
     assignedUser: String,
     purchaseDate: Date,
+    purchasePrice: Number,
+    warrantyExpiryDate: Date,
     status: {
         type: String,
         enum: ["Active", "Under Repair", "Retired"]
