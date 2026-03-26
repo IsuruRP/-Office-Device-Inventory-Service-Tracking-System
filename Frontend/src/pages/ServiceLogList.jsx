@@ -118,7 +118,7 @@ const ServiceLogList = () => {
                             <div className="text-right">
                                 <span className="inline-block px-4 py-1.5 bg-rose-600 text-white text-[10px] font-black uppercase tracking-[0.2em] mb-3 rounded">Service Event</span>
                                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">EVENT REFERENCE</p>
-                                <p className="text-lg font-mono font-black text-slate-900">SRV-{printTarget.device?.assetTag || 'NA'}-{new Date(printTarget.serviceDate).getTime().toString().slice(-6)}</p>
+                                <p className="text-lg font-mono font-black text-slate-900">SRV-{printTarget.device?.assetTag || printTarget.device?.assignedUser || 'NA'}-{new Date(printTarget.serviceDate).getTime().toString().slice(-6)}</p>
                             </div>
                         </div>
 
@@ -283,7 +283,7 @@ const ServiceLogList = () => {
                                     <td className="p-4 text-[11px] font-bold text-slate-900 whitespace-nowrap">{new Date(log.serviceDate).toLocaleDateString()}</td>
                                     <td className="p-4 border-r border-slate-50">
                                         <div className="flex flex-col">
-                                            <span className="text-xs font-black text-blue-600 font-mono tracking-tighter uppercase">{log.device?.assetTag || 'NA'}</span>
+                                            <span className="text-xs font-black text-blue-600 font-mono tracking-tighter uppercase">{log.device?.assetTag || log.device?.assignedUser || 'NA'}</span>
                                             <span className="text-[9px] font-bold text-slate-400 truncate max-w-[120px]">{log.device?.brand} {log.device?.model}</span>
                                         </div>
                                     </td>
@@ -390,7 +390,7 @@ const ServiceLogList = () => {
                                                 <ArticleIcon fontSize="small" />
                                             </div>
                                             <div className="flex flex-col">
-                                                <span className="font-black text-blue-600 text-xs tracking-tighter uppercase font-mono">{log.device?.assetTag || 'Unknown'}</span>
+                                                <span className="font-black text-blue-600 text-xs tracking-tighter uppercase font-mono">{log.device?.assetTag || log.device?.assignedUser || 'Unknown'}</span>
                                                 <span className="text-[10px] text-slate-400 font-bold truncate max-w-[120px] uppercase tracking-tight">{log.device?.brand} {log.device?.model}</span>
                                             </div>
                                         </div>
